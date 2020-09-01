@@ -2,6 +2,7 @@
 #define APPLICATIONWINDOW_H
 
 #include <QMainWindow>
+#include <QtWidgets>
 
 class ApplicationWindow : public QMainWindow
 {
