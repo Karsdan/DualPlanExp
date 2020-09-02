@@ -17,10 +17,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    applicationwindow.cpp
+    applicationwindow.cpp \
+    planexpdialog.cpp
 
 HEADERS += \
-    applicationwindow.h
+    applicationwindow.h \
+    planexpdialog.h
 
 TRANSLATIONS += \
     DualPlanExp_en_US.ts

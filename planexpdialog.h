@@ -1,15 +1,20 @@
 #ifndef PLANEXPDIALOG_H
 #define PLANEXPDIALOG_H
 
-#include <QWidget>
+#include <QDialog>
+#include <QMdiSubWindow>
+#include <QtWidgets>
+#include <QKeyEvent>
 
-class PlanExpDialog : public QWidget
+class PlanExpDialog : public QDialog
 {
     Q_OBJECT
 public:
     explicit PlanExpDialog(QWidget *parent = nullptr);
 
-signals:
+private:
+    QString curFile;
+    bool isUntitled;
 
 };
 
