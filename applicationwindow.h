@@ -11,6 +11,8 @@ class QMdiArea;
 class QMdiSubWindow;
 QT_END_NAMESPACE
 
+class PlanExpDialog;
+
 class ApplicationWindow : public QMainWindow
 {
     Q_OBJECT
@@ -41,5 +43,6 @@ private:
 
 private slots:
     void updateMenu();
+    void newPlanExp();
 };
 #endif // APPLICATIONWINDOW_H

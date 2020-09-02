@@ -1,4 +1,5 @@
 #include "applicationwindow.h"
+#include "planexpdialog.h"
 
 ApplicationWindow::ApplicationWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -6,10 +7,13 @@ ApplicationWindow::ApplicationWindow(QWidget *parent)
     mdiArea = new QMdiArea();
     mdiArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     mdiArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    setCentralWidget(mdiArea);
 
     initActions();
 
     connect(mdiArea, &QMdiArea::subWindowActivated, this, &ApplicationWindow::updateMenu);
+
+    initStatusBar();
 
     setWindowTitle("Двухфакторный планированный эксперимент (DualPlanExp)");
     setUnifiedTitleAndToolBarOnMac(true);
@@ -31,6 +35,13 @@ void ApplicationWindow::closeEvent(QCloseEvent *event)
         //writeSettings();
         event->accept();
     }
+}
+
+void ApplicationWindow::newPlanExp()
+{
+    PlanExpDialog *planDlg = new PlanExpDialog;
+    mdiArea->addSubWindow(planDlg);
+    planDlg->show();
 }
 
 void ApplicationWindow::updateMenu()
@@ -85,7 +96,7 @@ void ApplicationWindow::initActions()
     actionOpen = new QAction(newPlanExpIcon, tr("&New Wear Surface"), this);
     actionNew->setShortcut(QKeySequence::Open);
     actionOpen->setStatusTip(tr("Create a new Surface"));
-    connect(actionOpen, SIGNAL(triggered(bool)), this, SLOT(newPlotWearSurface()));
+    //connect(actionOpen, SIGNAL(triggered(bool)), this, SLOT(newPlotWearSurface()));
     fileMenu->addAction(actionOpen);
     fileToolBar->addAction(actionOpen);
 
@@ -93,7 +104,7 @@ void ApplicationWindow::initActions()
     actionSave = new QAction(saveIcon, tr("&Save"), this);
     actionSave->setShortcuts(QKeySequence::Save);
     actionSave->setStatusTip(tr("Save"));
-    connect(actionSave, SIGNAL(triggered(bool)), this, SLOT(save()));
+    //connect(actionSave, SIGNAL(triggered(bool)), this, SLOT(save()));
     fileMenu->addAction(actionSave);
     fileToolBar->addAction(actionSave);
 
@@ -101,7 +112,7 @@ void ApplicationWindow::initActions()
     actionSaveAs = new QAction(saveAsIcon, tr("Save &As..."), this);
     actionSaveAs->setShortcuts(QKeySequence::SaveAs);
     actionSaveAs->setStatusTip(tr("Save under a new name"));
-    connect(actionSaveAs, SIGNAL(triggered(bool)), this, SLOT(saveAs()));
+    //connect(actionSaveAs, SIGNAL(triggered(bool)), this, SLOT(saveAs()));
     fileMenu->addAction(actionSaveAs);
 
 //    fileMenu->addSeparator();
@@ -230,5 +241,10 @@ void ApplicationWindow::initActions()
 
     QAction *aboutQtAct = helpMenu->addAction(tr("About &Qt"), qApp, &QApplication::aboutQt);
     aboutQtAct->setStatusTip(tr("Show the Qt library's About box"));
+}
+
+void ApplicationWindow::initStatusBar()
+{
+    statusBar()->showMessage(tr("Ready"));
 }
 
