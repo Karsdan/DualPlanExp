@@ -18,26 +18,28 @@ PlanExpDialog::PlanExpDialog(QWidget *parent)
 
 void PlanExpDialog::initPlanDlg()
 {
+    //levelBox
+
     levelBox = new QGroupBox();
     levelBox->setTitle(tr("Уровни варьируемых факторов"));
 
-    lblX1 = new QLabel();
-    lblX1->setText(tr("X1"));
+    lblX1 = new QLabel(tr("X1"));
+//    lblX1->setText(tr("X1"));
 
-    lblX2 = new QLabel();
-    lblX2->setText(tr("X2"));
+    lblX2 = new QLabel(tr("X2"));
+//    lblX2->setText(tr("X2"));
 
-    lblLowLevel = new QLabel();
-    lblLowLevel->setText(tr("Нижний"));
+    lblLowLevel = new QLabel(tr("Нижний"));
+//    lblLowLevel->setText(tr("Нижний"));
 
-    lblTopLevel = new QLabel();
-    lblTopLevel->setText(tr("Верхний"));
+    lblTopLevel = new QLabel(tr("Верхний"));
+//    lblTopLevel->setText(tr("Верхний"));
 
-    lblMidLevel = new QLabel();
-    lblMidLevel->setText(tr("Основной"));
+    lblMidLevel = new QLabel(tr("Основной"));
+//    lblMidLevel->setText(tr("Основной"));
 
-    lblRangeVar = new QLabel();
-    lblRangeVar->setText(tr("Интервал\nварьирования"));
+    lblRangeVar = new QLabel(tr("Интервал\nварьирования"));
+//    lblRangeVar->setText(tr("Интервал\nварьирования"));
 
     boxLowLevelX1 = new QLineEdit();
     boxLowLevelX2 = new QLineEdit();
@@ -55,13 +57,28 @@ void PlanExpDialog::initPlanDlg()
     boxRangeX1->setEnabled(false);
     boxRangeX2->setEnabled(false);
 
+    //planeBox
+    planeBox = new QGroupBox();
+    planeBox->setTitle(tr("План эксперимента"));
+
+    //modelBox
+    modelBox = new QGroupBox();
+    modelBox->setTitle(tr("Математическая модель"));
+
+    lblModel = new QLabel(tr("y=b0+b1X1+b2X2+b12X1X2"));
+//    lblModel->setText(tr("y=b0+b1X1+b2X2+b12X1X2")); //Поменять внешний вид
+
+    boxModel = new QLineEdit();
+
+    //importanceBox
+    importanceBox = new QGroupBox();
+    importanceBox->setTitle(tr("Проверка значимости коэффициентов модели"));
+
+    //adequacyBox
+    adequacyBox = new QGroupBox();
+    adequacyBox->setTitle(tr("Проверка адекватности модели"));
 
     //LAYOUTS
-
-    QVBoxLayout *windowBoxLayout = new QVBoxLayout(this);
-    windowBoxLayout->addWidget(levelBox);
-    windowBoxLayout->addStretch(1);
-
     QGridLayout *levelBoxLayout = new QGridLayout(levelBox);
     levelBoxLayout->addWidget(lblX1, 0, 1);
     levelBoxLayout->addWidget(lblX2, 0, 2);
@@ -77,5 +94,19 @@ void PlanExpDialog::initPlanDlg()
     levelBoxLayout->addWidget(lblRangeVar, 4, 0);
     levelBoxLayout->addWidget(boxRangeX1, 4, 1);
     levelBoxLayout->addWidget(boxRangeX2, 4, 2);
+
+    QVBoxLayout *modelBoxLayout = new QVBoxLayout(modelBox);
+    modelBoxLayout->addWidget(lblModel);
+    modelBoxLayout->addWidget(boxModel);
+
+    QVBoxLayout *windowBoxLayout = new QVBoxLayout(this);
+    windowBoxLayout->addWidget(levelBox);
+    windowBoxLayout->addWidget(planeBox);
+    windowBoxLayout->addWidget(modelBox);
+    windowBoxLayout->addWidget(importanceBox);
+    windowBoxLayout->addWidget(adequacyBox);
+    windowBoxLayout->addStretch(1);
+
+    //CONNECTIONS
 
 }
