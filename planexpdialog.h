@@ -41,6 +41,8 @@ private:
     QLabel *lblAdeqDispertion, *lblAdeqStep, *lblTableFisher, *lblCalcFisher;
     QLineEdit *boxAdeqDispertion, *boxAdeqStep, *boxTableFisher, *boxCalcFisher;
 
+private slots:
+    void calcMid();
 
 };
 

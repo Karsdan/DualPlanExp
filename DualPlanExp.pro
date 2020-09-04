@@ -16,12 +16,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    calcplanexp.cpp \
     main.cpp \
     applicationwindow.cpp \
     planexpdialog.cpp
 
 HEADERS += \
     applicationwindow.h \
+    calcplanexp.h \
     planexpdialog.h
 
 TRANSLATIONS += \
